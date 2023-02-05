@@ -16,7 +16,7 @@
  */
 Senti_net_ptr create_senti_net() {
     Senti_net_ptr result = malloc(sizeof(Senti_net));
-    result->senti_synset_list = create_hash_map((int (*)(void *, int)) hash_function_string,
+    result->senti_synset_list = create_hash_map((unsigned int (*)(void *, int)) hash_function_string,
                                                  (int (*)(void *, void *)) compare_string);
     load_senti_net(result, "turkish_sentinet.xml");
     return result;
