@@ -4,25 +4,25 @@
 #include "../src/SentiNet.h"
 #include <stdio.h>
 
-void getPositives(Senti_net_ptr senti_net){
-    if (get_positive_synsets(senti_net)->size != 3100){
+void getPositives(Senti_net_ptr senti_net) {
+    if (get_positive_synsets(senti_net)->size != 3100) {
         printf("Test Failed in getPositives\n");
     }
 }
 
-void getNegatives(Senti_net_ptr senti_net){
-    if (get_negative_synsets(senti_net)->size != 10191){
+void getNegatives(Senti_net_ptr senti_net) {
+    if (get_negative_synsets(senti_net)->size != 10191) {
         printf("Test Failed in getNegatives\n");
     }
 }
 
-void getNeutrals(Senti_net_ptr senti_net){
-    if (get_neutral_synsets(senti_net)->size != 63534){
+void getNeutrals(Senti_net_ptr senti_net) {
+    if (get_neutral_synsets(senti_net)->size != 63534) {
         printf("Test Failed in getNeutrals\n");
     }
 }
 
-int main(){
+int main() {
     Senti_net_ptr senti_net = create_senti_net();
     getPositives(senti_net);
     getNegatives(senti_net);

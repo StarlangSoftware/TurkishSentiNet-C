@@ -29,15 +29,15 @@ void free_senti_literal_net(Senti_literal_net_ptr senti_literal_net) {
 
 void load_senti_literal_net(Senti_literal_net_ptr senti_literal_net, char *file_name) {
     Xml_element_ptr rootNode, sentiSynSetNode, partNode;
-    char* name = NULL;
+    char *name = NULL;
     double positiveScore = 0.0, negativeScore = 0.0;
     Xml_document_ptr doc = create_xml_document(file_name);
     parse(doc);
     rootNode = doc->root;
     sentiSynSetNode = rootNode->first_child;
-    while (sentiSynSetNode != NULL){
+    while (sentiSynSetNode != NULL) {
         partNode = sentiSynSetNode->first_child;
-        while (partNode != NULL){
+        while (partNode != NULL) {
             if (strcmp(partNode->name, "NAME") == 0) {
                 name = partNode->pcData;
             } else {
@@ -51,7 +51,7 @@ void load_senti_literal_net(Senti_literal_net_ptr senti_literal_net, char *file_
             }
             partNode = partNode->next_sibling;
         }
-        if (name != NULL){
+        if (name != NULL) {
             hash_map_insert(senti_literal_net->senti_literal_list,
                             name,
                             create_senti_literal(name, positiveScore, negativeScore));
@@ -70,7 +70,7 @@ void load_senti_literal_net(Senti_literal_net_ptr senti_literal_net, char *file_
  * @return SentiSynSet with the given name.
  */
 Senti_literal_ptr get_senti_literal(Senti_literal_net_ptr senti_literal_net, char *name) {
-    if (hash_map_contains(senti_literal_net->senti_literal_list, name)){
+    if (hash_map_contains(senti_literal_net->senti_literal_list, name)) {
         return hash_map_get(senti_literal_net->senti_literal_list, name);
     } else {
         return NULL;
@@ -86,9 +86,9 @@ Senti_literal_ptr get_senti_literal(Senti_literal_net_ptr senti_literal_net, cha
 Array_list_ptr get_literals_with_polarity(Senti_literal_net_ptr senti_literal_net, Polarity_type polarity_type) {
     Array_list_ptr result = create_array_list();
     Array_list_ptr list = key_value_list(senti_literal_net->senti_literal_list);
-    for (int i = 0; i < list->size; i++){
+    for (int i = 0; i < list->size; i++) {
         Hash_node_ptr hash_node = array_list_get(list, i);
-        if (get_polarity_literal(hash_node->value) == polarity_type){
+        if (get_polarity_literal(hash_node->value) == polarity_type) {
             array_list_add(result, hash_node->key);
         }
     }

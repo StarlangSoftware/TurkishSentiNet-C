@@ -5,7 +5,7 @@
 #ifndef SENTINET_POLARITYTYPE_H
 #define SENTINET_POLARITYTYPE_H
 
-enum polarity_type{
+enum polarity_type {
     POSITIVE, NEGATIVE, NEUTRAL
 };
 

@@ -17,7 +17,7 @@
 Senti_net_ptr create_senti_net() {
     Senti_net_ptr result = malloc(sizeof(Senti_net));
     result->senti_synset_list = create_hash_map((unsigned int (*)(void *, int)) hash_function_string,
-                                                 (int (*)(void *, void *)) compare_string);
+                                                (int (*)(void *, void *)) compare_string);
     load_senti_net(result, "turkish_sentinet.xml");
     return result;
 }
@@ -29,15 +29,15 @@ void free_senti_net(Senti_net_ptr senti_net) {
 
 void load_senti_net(Senti_net_ptr senti_net, char *file_name) {
     Xml_element_ptr rootNode, sentiSynSetNode, partNode;
-    char* name = NULL;
+    char *name = NULL;
     double positiveScore = 0.0, negativeScore = 0.0;
     Xml_document_ptr doc = create_xml_document(file_name);
     parse(doc);
     rootNode = doc->root;
     sentiSynSetNode = rootNode->first_child;
-    while (sentiSynSetNode != NULL){
+    while (sentiSynSetNode != NULL) {
         partNode = sentiSynSetNode->first_child;
-        while (partNode != NULL){
+        while (partNode != NULL) {
             if (strcmp(partNode->name, "ID") == 0) {
                 name = partNode->pcData;
             } else {
@@ -51,7 +51,7 @@ void load_senti_net(Senti_net_ptr senti_net, char *file_name) {
             }
             partNode = partNode->next_sibling;
         }
-        if (name != NULL){
+        if (name != NULL) {
             hash_map_insert(senti_net->senti_synset_list,
                             name,
                             create_senti_synset(name, positiveScore, negativeScore));
@@ -70,7 +70,7 @@ void load_senti_net(Senti_net_ptr senti_net, char *file_name) {
  * @return SentiSynSet with the given id.
  */
 Senti_synset_ptr get_senti_synset(Senti_net_ptr senti_net, char *id) {
-    if (hash_map_contains(senti_net->senti_synset_list, id)){
+    if (hash_map_contains(senti_net->senti_synset_list, id)) {
         return hash_map_get(senti_net->senti_synset_list, id);
     } else {
         return NULL;
@@ -86,9 +86,9 @@ Senti_synset_ptr get_senti_synset(Senti_net_ptr senti_net, char *id) {
 Array_list_ptr get_synsets_with_polarity(Senti_net_ptr senti_net, Polarity_type polarity_type) {
     Array_list_ptr result = create_array_list();
     Array_list_ptr list = key_value_list(senti_net->senti_synset_list);
-    for (int i = 0; i < list->size; i++){
+    for (int i = 0; i < list->size; i++) {
         Hash_node_ptr hash_node = array_list_get(list, i);
-        if (get_polarity_synset(hash_node->value) == polarity_type){
+        if (get_polarity_synset(hash_node->value) == polarity_type) {
             array_list_add(result, hash_node->key);
         }
     }
