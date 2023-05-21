@@ -16,8 +16,8 @@
  */
 Senti_net_ptr create_senti_net() {
     Senti_net_ptr result = malloc(sizeof(Senti_net));
-    result->senti_synset_list = create_hash_map((unsigned int (*)(void *, int)) hash_function_string,
-                                                (int (*)(void *, void *)) compare_string);
+    result->senti_synset_list = create_hash_map((unsigned int (*)(const void *, int)) hash_function_string,
+                                                (int (*)(const void *, const void *)) compare_string);
     load_senti_net(result, "turkish_sentinet.xml");
     return result;
 }
@@ -27,7 +27,7 @@ void free_senti_net(Senti_net_ptr senti_net) {
     free(senti_net);
 }
 
-void load_senti_net(Senti_net_ptr senti_net, char *file_name) {
+void load_senti_net(Senti_net_ptr senti_net, const char *file_name) {
     Xml_element_ptr rootNode, sentiSynSetNode, partNode;
     char *name = NULL;
     double positiveScore = 0.0, negativeScore = 0.0;
@@ -69,7 +69,7 @@ void load_senti_net(Senti_net_ptr senti_net, char *file_name) {
  * @param id Id of the searched SentiSynSet.
  * @return SentiSynSet with the given id.
  */
-Senti_synset_ptr get_senti_synset(Senti_net_ptr senti_net, char *id) {
+Senti_synset_ptr get_senti_synset(const Senti_net* senti_net, const char *id) {
     if (hash_map_contains(senti_net->senti_synset_list, id)) {
         return hash_map_get(senti_net->senti_synset_list, id);
     } else {
@@ -83,7 +83,7 @@ Senti_synset_ptr get_senti_synset(Senti_net_ptr senti_net, char *id) {
  * @param polarity_type PolarityTypes of the searched {@link SentiSynSet}s
  * @return A {@link vector} of id having polarityType polarityType.
  */
-Array_list_ptr get_synsets_with_polarity(Senti_net_ptr senti_net, Polarity_type polarity_type) {
+Array_list_ptr get_synsets_with_polarity(const Senti_net* senti_net, Polarity_type polarity_type) {
     Array_list_ptr result = create_array_list();
     Array_list_ptr list = key_value_list(senti_net->senti_synset_list);
     for (int i = 0; i < list->size; i++) {
@@ -100,7 +100,7 @@ Array_list_ptr get_synsets_with_polarity(Senti_net_ptr senti_net, Polarity_type 
  * Returns the ids of all positive {@link SentiSynSet}s.
  * @return A {@link vector} of ids of all positive {@link SentiSynSet}s.
  */
-Array_list_ptr get_positive_synsets(Senti_net_ptr senti_net) {
+Array_list_ptr get_positive_synsets(const Senti_net* senti_net) {
     return get_synsets_with_polarity(senti_net, POSITIVE);
 }
 
@@ -108,7 +108,7 @@ Array_list_ptr get_positive_synsets(Senti_net_ptr senti_net) {
  * Returns the ids of all negative {@link SentiSynSet}s.
  * @return A {@link vector} of ids of all negative {@link SentiSynSet}s.
  */
-Array_list_ptr get_negative_synsets(Senti_net_ptr senti_net) {
+Array_list_ptr get_negative_synsets(const Senti_net* senti_net) {
     return get_synsets_with_polarity(senti_net, NEGATIVE);
 }
 
@@ -116,7 +116,7 @@ Array_list_ptr get_negative_synsets(Senti_net_ptr senti_net) {
  * Returns the ids of all neutral {@link SentiSynSet}s.
  * @return A {@link vector} of ids of all neutral {@link SentiSynSet}s.
  */
-Array_list_ptr get_neutral_synsets(Senti_net_ptr senti_net) {
+Array_list_ptr get_neutral_synsets(const Senti_net* senti_net) {
     return get_synsets_with_polarity(senti_net, NEUTRAL);
 }
 

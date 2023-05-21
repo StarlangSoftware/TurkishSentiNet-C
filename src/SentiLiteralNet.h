@@ -19,16 +19,16 @@ Senti_literal_net_ptr create_senti_literal_net();
 
 void free_senti_literal_net(Senti_literal_net_ptr senti_literal_net);
 
-void load_senti_literal_net(Senti_literal_net_ptr senti_literal_net, char *file_name);
+void load_senti_literal_net(Senti_literal_net_ptr senti_literal_net, const char *file_name);
 
-Senti_literal_ptr get_senti_literal(Senti_literal_net_ptr senti_literal_net, char *name);
+Senti_literal_ptr get_senti_literal(const Senti_literal_net* senti_literal_net, const char *name);
 
-Array_list_ptr get_literals_with_polarity(Senti_literal_net_ptr senti_literal_net, Polarity_type polarity_type);
+Array_list_ptr get_literals_with_polarity(const Senti_literal_net* senti_literal_net, Polarity_type polarity_type);
 
-Array_list_ptr get_positive_literals(Senti_literal_net_ptr senti_literal_net);
+Array_list_ptr get_positive_literals(const Senti_literal_net* senti_literal_net);
 
-Array_list_ptr get_negative_literals(Senti_literal_net_ptr senti_literal_net);
+Array_list_ptr get_negative_literals(const Senti_literal_net* senti_literal_net);
 
-Array_list_ptr get_neutral_literals(Senti_literal_net_ptr senti_literal_net);
+Array_list_ptr get_neutral_literals(const Senti_literal_net* senti_literal_net);
 
 #endif //SENTINET_SENTILITERALNET_H

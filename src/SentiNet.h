@@ -19,17 +19,17 @@ Senti_net_ptr create_senti_net();
 
 void free_senti_net(Senti_net_ptr senti_net);
 
-void load_senti_net(Senti_net_ptr senti_net, char *file_name);
+void load_senti_net(Senti_net_ptr senti_net, const char *file_name);
 
-Senti_synset_ptr get_senti_synset(Senti_net_ptr senti_net, char *id);
+Senti_synset_ptr get_senti_synset(const Senti_net* senti_net, const char *id);
 
-Array_list_ptr get_synsets_with_polarity(Senti_net_ptr senti_net, Polarity_type polarity_type);
+Array_list_ptr get_synsets_with_polarity(const Senti_net* senti_net, Polarity_type polarity_type);
 
-Array_list_ptr get_positive_synsets(Senti_net_ptr senti_net);
+Array_list_ptr get_positive_synsets(const Senti_net* senti_net);
 
-Array_list_ptr get_negative_synsets(Senti_net_ptr senti_net);
+Array_list_ptr get_negative_synsets(const Senti_net* senti_net);
 
-Array_list_ptr get_neutral_synsets(Senti_net_ptr senti_net);
+Array_list_ptr get_neutral_synsets(const Senti_net* senti_net);
 
 void remove_senti_synset(Senti_net_ptr senti_net, Senti_synset_ptr senti_synset);
 

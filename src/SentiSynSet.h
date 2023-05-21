@@ -16,10 +16,10 @@ struct senti_synset {
 typedef struct senti_synset Senti_synset;
 typedef Senti_synset *Senti_synset_ptr;
 
-Senti_synset_ptr create_senti_synset(char *id, double positive_score, double negative_score);
+Senti_synset_ptr create_senti_synset(const char *id, double positive_score, double negative_score);
 
 void free_senti_synset(Senti_synset_ptr senti_synset);
 
-Polarity_type get_polarity_synset(Senti_synset_ptr senti_synset);
+Polarity_type get_polarity_synset(const Senti_synset* senti_synset);
 
 #endif //SENTINET_SENTISYNSET_H

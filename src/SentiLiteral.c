@@ -12,7 +12,7 @@
  * @param positive_score Positive score of the SentiLiteral.
  * @param negative_score Negative score of the SentiLiteral.
  */
-Senti_literal_ptr create_senti_literal(char *name, double positive_score, double negative_score) {
+Senti_literal_ptr create_senti_literal(const char *name, double positive_score, double negative_score) {
     Senti_literal_ptr result = malloc(sizeof(Senti_literal));
     result->name = str_copy(result->name, name);
     result->positive_score = positive_score;
@@ -31,7 +31,7 @@ void free_senti_literal(Senti_literal_ptr senti_literal) {
  * score and negative score are equal, the polarity is neutral.
  * @return PolarityType of the SentiLiteral.
  */
-Polarity_type get_polarity_literal(Senti_literal_ptr senti_literal) {
+Polarity_type get_polarity_literal(const Senti_literal* senti_literal) {
     if (senti_literal->positive_score > senti_literal->negative_score) {
         return POSITIVE;
     } else {

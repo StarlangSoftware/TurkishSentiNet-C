@@ -16,8 +16,8 @@
  */
 Senti_literal_net_ptr create_senti_literal_net() {
     Senti_literal_net_ptr result = malloc(sizeof(Senti_literal_net));
-    result->senti_literal_list = create_hash_map((unsigned int (*)(void *, int)) hash_function_string,
-                                                 (int (*)(void *, void *)) compare_string);
+    result->senti_literal_list = create_hash_map((unsigned int (*)(const void *, int)) hash_function_string,
+                                                 (int (*)(const void *, const void *)) compare_string);
     load_senti_literal_net(result, "turkish_sentiliteralnet.xml");
     return result;
 }
@@ -27,7 +27,7 @@ void free_senti_literal_net(Senti_literal_net_ptr senti_literal_net) {
     free(senti_literal_net);
 }
 
-void load_senti_literal_net(Senti_literal_net_ptr senti_literal_net, char *file_name) {
+void load_senti_literal_net(Senti_literal_net_ptr senti_literal_net, const char *file_name) {
     Xml_element_ptr rootNode, sentiSynSetNode, partNode;
     char *name = NULL;
     double positiveScore = 0.0, negativeScore = 0.0;
@@ -69,7 +69,7 @@ void load_senti_literal_net(Senti_literal_net_ptr senti_literal_net, char *file_
  * @param name Name of the searched SentiLiteral.
  * @return SentiSynSet with the given name.
  */
-Senti_literal_ptr get_senti_literal(Senti_literal_net_ptr senti_literal_net, char *name) {
+Senti_literal_ptr get_senti_literal(const Senti_literal_net* senti_literal_net, const char *name) {
     if (hash_map_contains(senti_literal_net->senti_literal_list, name)) {
         return hash_map_get(senti_literal_net->senti_literal_list, name);
     } else {
@@ -83,7 +83,7 @@ Senti_literal_ptr get_senti_literal(Senti_literal_net_ptr senti_literal_net, cha
  * @param polarityType PolarityTypes of the searched {@link SentiLiteral}s
  * @return An array of id having polarityType polarityType.
  */
-Array_list_ptr get_literals_with_polarity(Senti_literal_net_ptr senti_literal_net, Polarity_type polarity_type) {
+Array_list_ptr get_literals_with_polarity(const Senti_literal_net* senti_literal_net, Polarity_type polarity_type) {
     Array_list_ptr result = create_array_list();
     Array_list_ptr list = key_value_list(senti_literal_net->senti_literal_list);
     for (int i = 0; i < list->size; i++) {
@@ -100,7 +100,7 @@ Array_list_ptr get_literals_with_polarity(Senti_literal_net_ptr senti_literal_ne
  * Returns the ids of all positive {@link SentiLiteral}s.
  * @return A {@link vector} of ids of all positive {@link SentiLiteral}s.
  */
-Array_list_ptr get_positive_literals(Senti_literal_net_ptr senti_literal_net) {
+Array_list_ptr get_positive_literals(const Senti_literal_net* senti_literal_net) {
     return get_literals_with_polarity(senti_literal_net, POSITIVE);
 }
 
@@ -108,7 +108,7 @@ Array_list_ptr get_positive_literals(Senti_literal_net_ptr senti_literal_net) {
  * Returns the ids of all negative {@link SentiLiteral}s.
  * @return A {@link vector} of ids of all negative {@link SentiLiteral}s.
  */
-Array_list_ptr get_negative_literals(Senti_literal_net_ptr senti_literal_net) {
+Array_list_ptr get_negative_literals(const Senti_literal_net* senti_literal_net) {
     return get_literals_with_polarity(senti_literal_net, NEGATIVE);
 }
 
@@ -116,6 +116,6 @@ Array_list_ptr get_negative_literals(Senti_literal_net_ptr senti_literal_net) {
  * Returns the ids of all neutral {@link SentiLiteral}s.
  * @return A {@link vector} of ids of all neutral {@link SentiLiteral}s.
  */
-Array_list_ptr get_neutral_literals(Senti_literal_net_ptr senti_literal_net) {
+Array_list_ptr get_neutral_literals(const Senti_literal_net* senti_literal_net) {
     return get_literals_with_polarity(senti_literal_net, NEUTRAL);
 }

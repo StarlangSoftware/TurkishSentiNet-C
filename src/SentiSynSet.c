@@ -12,7 +12,7 @@
  * @param positive_score Positive score of the SentiSynSet.
  * @param negative_score Negative score of the SentiSynSet.
  */
-Senti_synset_ptr create_senti_synset(char *id, double positive_score, double negative_score) {
+Senti_synset_ptr create_senti_synset(const char *id, double positive_score, double negative_score) {
     Senti_synset_ptr result = malloc(sizeof(Senti_synset));
     result->id = str_copy(result->id, id);
     result->positive_score = positive_score;
@@ -31,7 +31,7 @@ void free_senti_synset(Senti_synset_ptr senti_synset) {
  * score and negative score are equal, the polarity is neutral.
  * @return PolarityType of the sentiSynSet.
  */
-Polarity_type get_polarity_synset(Senti_synset_ptr senti_synset) {
+Polarity_type get_polarity_synset(const Senti_synset* senti_synset) {
     if (senti_synset->positive_score > senti_synset->negative_score) {
         return POSITIVE;
     } else {
