@@ -16,8 +16,7 @@
  */
 Senti_literal_net_ptr create_senti_literal_net() {
     Senti_literal_net_ptr result = malloc(sizeof(Senti_literal_net));
-    result->senti_literal_list = create_hash_map((unsigned int (*)(const void *, int)) hash_function_string,
-                                                 (int (*)(const void *, const void *)) compare_string);
+    result->senti_literal_list = create_string_hash_map();
     load_senti_literal_net(result, "turkish_sentiliteralnet.xml");
     return result;
 }
