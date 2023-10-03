@@ -77,10 +77,10 @@ Senti_synset_ptr get_senti_synset(const Senti_net* senti_net, const char *id) {
 }
 
 /**
- * Constructs and returns an {@link vector} of ids, which are the ids of the {@link SentiSynSet}s having polarity
+ * Constructs and returns an vector of ids, which are the ids of the SentiSynSets having polarity
  * polarityType.
- * @param polarity_type PolarityTypes of the searched {@link SentiSynSet}s
- * @return A {@link vector} of id having polarityType polarityType.
+ * @param polarity_type PolarityTypes of the searched SentiSynSets
+ * @return A vector of id having polarityType polarityType.
  */
 Array_list_ptr get_synsets_with_polarity(const Senti_net* senti_net, Polarity_type polarity_type) {
     Array_list_ptr result = create_array_list();
@@ -96,24 +96,24 @@ Array_list_ptr get_synsets_with_polarity(const Senti_net* senti_net, Polarity_ty
 }
 
 /**
- * Returns the ids of all positive {@link SentiSynSet}s.
- * @return A {@link vector} of ids of all positive {@link SentiSynSet}s.
+ * Returns the ids of all positive SentiSynSets.
+ * @return A vector of ids of all positive SentiSynSets.
  */
 Array_list_ptr get_positive_synsets(const Senti_net* senti_net) {
     return get_synsets_with_polarity(senti_net, POSITIVE);
 }
 
 /**
- * Returns the ids of all negative {@link SentiSynSet}s.
- * @return A {@link vector} of ids of all negative {@link SentiSynSet}s.
+ * Returns the ids of all negative SentiSynSets.
+ * @return A vector of ids of all negative SentiSynSets.
  */
 Array_list_ptr get_negative_synsets(const Senti_net* senti_net) {
     return get_synsets_with_polarity(senti_net, NEGATIVE);
 }
 
 /**
- * Returns the ids of all neutral {@link SentiSynSet}s.
- * @return A {@link vector} of ids of all neutral {@link SentiSynSet}s.
+ * Returns the ids of all neutral SentiSynSets.
+ * @return A vector of ids of all neutral SentiSynSets.
  */
 Array_list_ptr get_neutral_synsets(const Senti_net* senti_net) {
     return get_synsets_with_polarity(senti_net, NEUTRAL);
