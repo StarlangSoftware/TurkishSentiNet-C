@@ -11,4 +11,8 @@ enum polarity_type {
 
 typedef enum polarity_type Polarity_type;
 
+Polarity_type get_polarity_type(const char* polarity);
+
+char* polarity_to_string(Polarity_type polarity_type);
+
 #endif //SENTINET_POLARITYTYPE_H
