@@ -7,5 +7,5 @@ set(CMAKE_C_FLAGS "-O3")
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-add_library(SentiNet src/PolarityType.h src/SentiLiteral.c src/SentiLiteral.h src/SentiSynSet.c src/SentiSynSet.h src/SentiLiteralNet.c src/SentiLiteralNet.h src/SentiNet.c src/SentiNet.h)
+add_library(SentiNet src/PolarityType.h src/PolarityType.c src/SentiLiteral.c src/SentiLiteral.h src/SentiSynSet.c src/SentiSynSet.h src/SentiLiteralNet.c src/SentiLiteralNet.h src/SentiNet.c src/SentiNet.h)
 target_link_libraries(SentiNet ${CONAN_LIBS})
