@@ -33,12 +33,12 @@ void free_senti_literal(Senti_literal_ptr senti_literal) {
  */
 Polarity_type get_polarity_literal(const Senti_literal* senti_literal) {
     if (senti_literal->positive_score > senti_literal->negative_score) {
-        return POSITIVE;
+        return POLARITY_POSITIVE;
     } else {
         if (senti_literal->positive_score < senti_literal->negative_score) {
-            return NEGATIVE;
+            return POLARITY_NEGATIVE;
         } else {
-            return NEUTRAL;
+            return POLARITY_NEUTRAL;
         }
     }
 }

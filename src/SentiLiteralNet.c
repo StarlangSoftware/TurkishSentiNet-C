@@ -100,7 +100,7 @@ Array_list_ptr get_literals_with_polarity(const Senti_literal_net* senti_literal
  * @return A vector of ids of all positive SentiLiterals.
  */
 Array_list_ptr get_positive_literals(const Senti_literal_net* senti_literal_net) {
-    return get_literals_with_polarity(senti_literal_net, POSITIVE);
+    return get_literals_with_polarity(senti_literal_net, POLARITY_POSITIVE);
 }
 
 /**
@@ -108,7 +108,7 @@ Array_list_ptr get_positive_literals(const Senti_literal_net* senti_literal_net)
  * @return A vector of ids of all negative SentiLiterals.
  */
 Array_list_ptr get_negative_literals(const Senti_literal_net* senti_literal_net) {
-    return get_literals_with_polarity(senti_literal_net, NEGATIVE);
+    return get_literals_with_polarity(senti_literal_net, POLARITY_NEGATIVE);
 }
 
 /**
@@ -116,5 +116,5 @@ Array_list_ptr get_negative_literals(const Senti_literal_net* senti_literal_net)
  * @return A vector of ids of all neutral SentiLiterals.
  */
 Array_list_ptr get_neutral_literals(const Senti_literal_net* senti_literal_net) {
-    return get_literals_with_polarity(senti_literal_net, NEUTRAL);
+    return get_literals_with_polarity(senti_literal_net, POLARITY_NEUTRAL);
 }

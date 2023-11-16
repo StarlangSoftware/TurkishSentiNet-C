@@ -33,12 +33,12 @@ void free_senti_synset(Senti_synset_ptr senti_synset) {
  */
 Polarity_type get_polarity_synset(const Senti_synset* senti_synset) {
     if (senti_synset->positive_score > senti_synset->negative_score) {
-        return POSITIVE;
+        return POLARITY_POSITIVE;
     } else {
         if (senti_synset->positive_score < senti_synset->negative_score) {
-            return NEGATIVE;
+            return POLARITY_NEGATIVE;
         } else {
-            return NEUTRAL;
+            return POLARITY_NEUTRAL;
         }
     }
 }
