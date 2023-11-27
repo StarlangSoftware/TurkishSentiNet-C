@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <StringUtils.h>
 #include "SentiLiteral.h"
+#include "Memory/Memory.h"
 
 /**
  * Constructor of SentiLiteral. Gets input id, positiveScore, negativeScore and sets all corresponding attributes.
@@ -13,7 +14,7 @@
  * @param negative_score Negative score of the SentiLiteral.
  */
 Senti_literal_ptr create_senti_literal(const char *name, double positive_score, double negative_score) {
-    Senti_literal_ptr result = malloc(sizeof(Senti_literal));
+    Senti_literal_ptr result = malloc_(sizeof(Senti_literal), "create_senti_literal");
     result->name = str_copy(result->name, name);
     result->positive_score = positive_score;
     result->negative_score = negative_score;
@@ -21,8 +22,8 @@ Senti_literal_ptr create_senti_literal(const char *name, double positive_score, 
 }
 
 void free_senti_literal(Senti_literal_ptr senti_literal) {
-    free(senti_literal->name);
-    free(senti_literal);
+    free_(senti_literal->name);
+    free_(senti_literal);
 }
 
 /**

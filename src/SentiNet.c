@@ -7,6 +7,7 @@
 #include <XmlDocument.h>
 #include <string.h>
 #include <HashMap/HashNode.h>
+#include <Memory/Memory.h>
 #include "SentiNet.h"
 #include "SentiSynSet.h"
 
@@ -15,7 +16,7 @@
  * sentiSynSet read, it adds it to the sentiSynSetList.
  */
 Senti_net_ptr create_senti_net() {
-    Senti_net_ptr result = malloc(sizeof(Senti_net));
+    Senti_net_ptr result = malloc_(sizeof(Senti_net), "create_senti_net");
     result->senti_synset_list = create_string_hash_map();
     load_senti_net(result, "turkish_sentinet.xml");
     return result;
@@ -23,7 +24,7 @@ Senti_net_ptr create_senti_net() {
 
 void free_senti_net(Senti_net_ptr senti_net) {
     free_hash_map(senti_net->senti_synset_list, (void (*)(void *)) free_senti_synset);
-    free(senti_net);
+    free_(senti_net);
 }
 
 void load_senti_net(Senti_net_ptr senti_net, const char *file_name) {

@@ -7,6 +7,7 @@
 #include <XmlDocument.h>
 #include <string.h>
 #include <HashMap/HashNode.h>
+#include <Memory/Memory.h>
 #include "SentiLiteralNet.h"
 #include "SentiLiteral.h"
 
@@ -15,7 +16,7 @@
  * sentiSynSet read, it adds it to the sentiSynSetList.
  */
 Senti_literal_net_ptr create_senti_literal_net() {
-    Senti_literal_net_ptr result = malloc(sizeof(Senti_literal_net));
+    Senti_literal_net_ptr result = malloc_(sizeof(Senti_literal_net), "create_senti_literal_net");
     result->senti_literal_list = create_string_hash_map();
     load_senti_literal_net(result, "turkish_sentiliteralnet.xml");
     return result;
@@ -23,7 +24,7 @@ Senti_literal_net_ptr create_senti_literal_net() {
 
 void free_senti_literal_net(Senti_literal_net_ptr senti_literal_net) {
     free_hash_map(senti_literal_net->senti_literal_list, (void (*)(void *)) free_senti_literal);
-    free(senti_literal_net);
+    free_(senti_literal_net);
 }
 
 void load_senti_literal_net(Senti_literal_net_ptr senti_literal_net, const char *file_name) {
