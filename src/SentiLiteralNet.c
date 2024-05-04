@@ -22,11 +22,19 @@ Senti_literal_net_ptr create_senti_literal_net() {
     return result;
 }
 
+/**
+ * Destructor of the SentiLiteralNet. Frees memory allocated for the senti_literal_list hash map.
+ * @param senti_literal_net Current senti literal net.
+ */
 void free_senti_literal_net(Senti_literal_net_ptr senti_literal_net) {
     free_hash_map(senti_literal_net->senti_literal_list, (void (*)(void *)) free_senti_literal);
     free_(senti_literal_net);
 }
 
+/**
+ * Reads the Xml file that contains names of sentiLiterals and their positive, negative scores.
+ * @param file_name Xml document that contains the SentiLiteralNet.
+ */
 void load_senti_literal_net(Senti_literal_net_ptr senti_literal_net, const char *file_name) {
     Xml_element_ptr rootNode, sentiSynSetNode, partNode;
     char *name = NULL;

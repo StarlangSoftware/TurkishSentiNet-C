@@ -21,6 +21,10 @@ Senti_literal_ptr create_senti_literal(const char *name, double positive_score, 
     return result;
 }
 
+/**
+ * Destructor of the SentiLiteral. Frees memory allocated for name.
+ * @param senti_literal Current senti literal.
+ */
 void free_senti_literal(Senti_literal_ptr senti_literal) {
     free_(senti_literal->name);
     free_(senti_literal);

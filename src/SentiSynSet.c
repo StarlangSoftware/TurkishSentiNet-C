@@ -21,6 +21,10 @@ Senti_synset_ptr create_senti_synset(const char *id, double positive_score, doub
     return result;
 }
 
+/**
+ * Destructor of the SentiSynSet. Frees memory allocated to id.
+ * @param senti_synset Current Senti SynSet.
+ */
 void free_senti_synset(Senti_synset_ptr senti_synset) {
     free_(senti_synset->id);
     free_(senti_synset);

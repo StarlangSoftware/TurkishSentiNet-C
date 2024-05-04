@@ -22,11 +22,19 @@ Senti_net_ptr create_senti_net() {
     return result;
 }
 
+/**
+ * Destructor of the SentiNet. Frees memory allocated for the senti_synset_list hash map.
+ * @param senti_net Current senti net.
+ */
 void free_senti_net(Senti_net_ptr senti_net) {
     free_hash_map(senti_net->senti_synset_list, (void (*)(void *)) free_senti_synset);
     free_(senti_net);
 }
 
+/**
+ * Reads the Xml file that contains names of sentiSynSets and their positive, negative scores.
+ * @param xmlDocument Xml document that contains the SentiNet.
+ */
 void load_senti_net(Senti_net_ptr senti_net, const char *file_name) {
     Xml_element_ptr rootNode, sentiSynSetNode, partNode;
     char *name = NULL;
