@@ -16,7 +16,7 @@
  * sentiSynSet read, it adds it to the sentiSynSetList.
  */
 Senti_literal_net_ptr create_senti_literal_net() {
-    Senti_literal_net_ptr result = malloc_(sizeof(Senti_literal_net), "create_senti_literal_net");
+    Senti_literal_net_ptr result = malloc_(sizeof(Senti_literal_net));
     result->senti_literal_list = create_string_hash_map();
     load_senti_literal_net(result, "turkish_sentiliteralnet.xml");
     return result;

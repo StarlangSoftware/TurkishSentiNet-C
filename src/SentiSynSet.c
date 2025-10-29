@@ -14,7 +14,7 @@
  * @param negative_score Negative score of the SentiSynSet.
  */
 Senti_synset_ptr create_senti_synset(const char *id, double positive_score, double negative_score) {
-    Senti_synset_ptr result = malloc_(sizeof(Senti_synset), "create_senti_synset");
+    Senti_synset_ptr result = malloc_(sizeof(Senti_synset));
     result->id = str_copy(result->id, id);
     result->positive_score = positive_score;
     result->negative_score = negative_score;

@@ -14,7 +14,7 @@
  * @param negative_score Negative score of the SentiLiteral.
  */
 Senti_literal_ptr create_senti_literal(const char *name, double positive_score, double negative_score) {
-    Senti_literal_ptr result = malloc_(sizeof(Senti_literal), "create_senti_literal");
+    Senti_literal_ptr result = malloc_(sizeof(Senti_literal));
     result->name = str_copy(result->name, name);
     result->positive_score = positive_score;
     result->negative_score = negative_score;

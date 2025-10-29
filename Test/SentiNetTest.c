@@ -30,9 +30,11 @@ void getNeutrals(Senti_net_ptr senti_net) {
 }
 
 int main() {
+    start_large_memory_check();
     Senti_net_ptr senti_net = create_senti_net();
     getPositives(senti_net);
     getNegatives(senti_net);
     getNeutrals(senti_net);
     free_senti_net(senti_net);
+    end_memory_check();
 }
